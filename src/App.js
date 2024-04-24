@@ -1,3 +1,5 @@
+import Navbar from "./Navbar";
+import "./index.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -137,6 +139,7 @@ function App() {
   };
   return (
     <div className="App">
+      <Navbar />
       <div>
         <h2>Equipment:</h2>
         {equipment ? (
@@ -144,11 +147,11 @@ function App() {
             return (
               <div key={equipment._id}>
                 <h3>{equipment.name}</h3>
-                <button onClick={() => deleteEquipment(equipment._id)}>
-                  Delete Equipment
-                </button>
                 <button onClick={() => toggleUpdate(equipment)}>
                   Update Equipment{" "}
+                </button>
+                <button onClick={() => deleteEquipment(equipment._id)}>
+                  Delete Equipment
                 </button>
               </div>
             );
