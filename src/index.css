@@ -60,3 +60,12 @@
    padding-left: 15px;
    
   }
+
+  .create-equipment-button { 
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+.button-span { 
+  padding: 3px
+}

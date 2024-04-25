@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Routes } from "./Routes";
 
 function App() {
   // store data in STATE
@@ -143,6 +144,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+
       <div className="create-equipment">
         <h2>Equipment Listing</h2>
         {/* <Button variant="primary">Primary</Button>{" "} */}
@@ -233,6 +235,7 @@ function App() {
                     >
                       Update Equipment
                     </Button>
+                    <span className="button-span" />
                     <Button
                       variant="danger"
                       onClick={() => deleteEquipment(equipment._id)}
