@@ -1,5 +1,8 @@
 import Navbar from "./Navbar";
 import "./index.css";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -141,7 +144,8 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="create-equipment">
-        <h2>Equipment:</h2>
+        <h2>Equipment Listing</h2>
+        {/* <Button variant="primary">Primary</Button>{" "} */}
         {!updateForm._id && (
           <div>
             <h2>Create Equipment</h2>
@@ -170,11 +174,17 @@ function App() {
                 value={createForm.location}
                 name="location"
               />
-              <button type="submit">Create Equipment</button>
+              <span className="submit-button"></span>
+              <Button
+                className="create-equipment-button "
+                variant="primary"
+                type="submit"
+              >
+                Create Equipment
+              </Button>
             </form>
           </div>
         )}
-
         {updateForm._id && (
           <div>
             <h2> Update Equipment</h2>
@@ -199,35 +209,44 @@ function App() {
                 value={updateForm.location}
                 name="location"
               />
-              <button type="submit">Update Equipment</button>
+              <Button variant="warning" type="submit">
+                Update Equipment
+              </Button>
             </form>
           </div>
         )}
-
-        <div className="equipment">
+        <Card>
           {equipment ? (
             equipment.map((equipment) => {
               return (
                 <div key={equipment._id}>
-                  <h3>{equipment.name}</h3>
-                  <h2 id="equipmentdetails">
-                    <h2>{equipment.weight}</h2>
-                    <h2>{equipment.max_length}</h2>
-                    <h2>{equipment.location}</h2>
-                  </h2>
-                  <button onClick={() => toggleUpdate(equipment)}>
-                    Update Equipment{" "}
-                  </button>
-                  <button onClick={() => deleteEquipment(equipment._id)}>
-                    Delete Equipment
-                  </button>
+                  <Card.Body>
+                    <Card.Title>{equipment.name}</Card.Title>
+                    <Card.Text>
+                      <p>Weight: {equipment.weight}</p>
+                      <p>Max Length: {equipment.max_length}</p>
+                      <p>Location: {equipment.location}</p>
+                    </Card.Text>
+                    <Button
+                      variant="primary"
+                      onClick={() => toggleUpdate(equipment)}
+                    >
+                      Update Equipment
+                    </Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => deleteEquipment(equipment._id)}
+                    >
+                      Delete Equipment
+                    </Button>
+                  </Card.Body>
                 </div>
               );
             })
           ) : (
-            <div></div>
+            <div>No equipment available.</div>
           )}
-        </div>
+        </Card>
       </div>
     </div>
   );
