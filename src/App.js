@@ -140,88 +140,95 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div>
+      <div className="create-equipment">
         <h2>Equipment:</h2>
-        {equipment ? (
-          equipment.map((equipment) => {
-            return (
-              <div key={equipment._id}>
-                <h3>{equipment.name}</h3>
-                <button onClick={() => toggleUpdate(equipment)}>
-                  Update Equipment{" "}
-                </button>
-                <button onClick={() => deleteEquipment(equipment._id)}>
-                  Delete Equipment
-                </button>
-              </div>
-            );
-          })
-        ) : (
-          <div></div>
+        {!updateForm._id && (
+          <div>
+            <h2>Create Equipment</h2>
+            <form onSubmit={createEquipment}>
+              <textarea
+                placeholder="Equipment Name:"
+                onChange={updateCreateFormField}
+                value={createForm.name}
+                name="name"
+              ></textarea>
+              <textarea
+                placeholder="Weight:"
+                onChange={updateCreateFormField}
+                value={createForm.weight}
+                name="weight"
+              />
+              <textarea
+                placeholder="Max-Length:"
+                onChange={updateCreateFormField}
+                value={createForm.max_length}
+                name="max_length"
+              />
+              <textarea
+                placeholder="Location:"
+                onChange={updateCreateFormField}
+                value={createForm.location}
+                name="location"
+              />
+              <button type="submit">Create Equipment</button>
+            </form>
+          </div>
         )}
+
+        {updateForm._id && (
+          <div>
+            <h2> Update Equipment</h2>
+            <form onSubmit={updateEquipment}>
+              <textarea
+                onChange={handleUpdateFieldChange}
+                value={updateForm.name}
+                name="name"
+              />
+              <textarea
+                onChange={handleUpdateFieldChange}
+                value={updateForm.weight}
+                name="weight"
+              />
+              <textarea
+                onChange={handleUpdateFieldChange}
+                value={updateForm.max_length}
+                name="max_length"
+              />
+              <textarea
+                onChange={handleUpdateFieldChange}
+                value={updateForm.location}
+                name="location"
+              />
+              <button type="submit">Update Equipment</button>
+            </form>
+          </div>
+        )}
+
+        <div className="equipment">
+          {equipment ? (
+            equipment.map((equipment) => {
+              return (
+                <div key={equipment._id}>
+                  <h3>{equipment.name}</h3>
+                  <h2 id="equipmentdetails">
+                    <h2>{equipment.weight}</h2>
+                    <h2>{equipment.max_length}</h2>
+                    <h2>{equipment.location}</h2>
+                  </h2>
+                  <button onClick={() => toggleUpdate(equipment)}>
+                    Update Equipment{" "}
+                  </button>
+                  <button onClick={() => deleteEquipment(equipment._id)}>
+                    Delete Equipment
+                  </button>
+                </div>
+              );
+            })
+          ) : (
+            <div></div>
+          )}
+        </div>
       </div>
-
-      {updateForm._id && (
-        <div>
-          <h2> Update Equipment</h2>
-          <form onSubmit={updateEquipment}>
-            <input
-              onChange={handleUpdateFieldChange}
-              value={updateForm.name}
-              name="name"
-            />
-            <textarea
-              onChange={handleUpdateFieldChange}
-              value={updateForm.weight}
-              name="weight"
-            />
-            <textarea
-              onChange={handleUpdateFieldChange}
-              value={updateForm.max_length}
-              name="max_length"
-            />
-            <textarea
-              onChange={handleUpdateFieldChange}
-              value={updateForm.location}
-              name="location"
-            />
-            <button type="submit">Update Equipment</button>
-          </form>
-        </div>
-      )}
-
-      {!updateForm._id && (
-        <div>
-          <h2>Create Equipment</h2>
-          <form onSubmit={createEquipment}>
-            <input
-              placeholder="Equipment Name:"
-              onChange={updateCreateFormField}
-              value={createForm.name}
-              name="name"
-            ></input>
-            <textarea
-              placeholder="Weight:"
-              onChange={updateCreateFormField}
-              value={createForm.weight}
-              name="weight"
-            />
-            <textarea
-              placeholder="Max-Length:"
-              onChange={updateCreateFormField}
-              value={createForm.max_length}
-              name="max_length"
-            />
-            <textarea
-              placeholder="Location:"
-              onChange={updateCreateFormField}
-              value={createForm.location}
-              name="location"
-            />
-            <button type="submit">Create Equipment</button>
-          </form>
-        </div>
-      )}
     </div>
   );
 }

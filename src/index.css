@@ -4,7 +4,23 @@
     color: #333; 
   }
   
-  
+  #equipmentdetails h2{ 
+    font-size: medium;
+    padding: 2px;
+    /* box-shadow: 10px 5px 5px #949494; */
+    word-spacing: 2px;
+    display:table-row;
+    
+  }
+
+  .create-equipment {
+    padding: 20px
+  }
+
+  .equipment-items { 
+    background-color: #333;
+  }
+
   .navbar { 
     padding: 20px; 
     display: flex; 
